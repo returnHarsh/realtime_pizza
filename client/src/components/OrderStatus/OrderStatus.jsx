@@ -1,4 +1,4 @@
-import { Box, Flex , Spinner, Text } from '@chakra-ui/react'
+import { Box, Flex , Spinner, Text , Image, SimpleGrid } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { FaClipboardCheck } from "react-icons/fa";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
@@ -63,62 +63,61 @@ if(isLoading){
 
 
   return (
-    <Flex  width={"100vw"} justifyContent={"flex-start"} alignItems={"center"}>
-        {console.log(data)}
-        <Flex mt={"40px"} gap={"55px"} ml={{base : "20px" , md : "20%"}}  flexDirection={"column"} width={"50%"}>
+    <Flex padding={"15px"} width={"100vw"} justifyContent={"flex-start"} alignItems={"center"} flexDirection={{base : "column" , md : "row"}}>
 
-            <Flex filter={data > 1 ? "grayScale(100%)" : "grayScale(0%)"}  gap={"20px"} alignItems={"center"}  justifyContent={"flex-start"} >
-                <FaClipboardCheck  color='darkorange' size={"40px"}/>
-                <Box  bg={"orange.400"} height={"10px"} w={"10px"} borderRadius={"50%"} ></Box>
-                <Text   color={data > 1 ? "gray.500" : "orange"} fontWeight = {"600"} fontSize = {"18px"}> Order Placed</Text>
+        <Flex gap={"20px"} flexDirection={"column"}  mb={"auto"} mt={"40px"} borderRadius={"md"} padding={"10px"} flex={0.3} width={{base : "100%" , md : "30%"}} justifyContent={"center"}  alignItems={"center"}>
+
+            <SimpleGrid gap={"10px"}  width={"100%"}  minChildWidth={"150px"} >
+            {order.cart.map(e=>{
+                return <Flex bg={"gray.100"} padding={"10px"} borderRadius={"md"} justifyContent={"center"} alignItems={"center"}>
+                    <Image maxH={"100px"} src={e.image} />
+                </Flex>
+            })}
+            </SimpleGrid>
+        </Flex>
+
+        <Flex  ml={"20px"} padding={"20px"} maxW={{base : "100%" , md : "60%"}} mr={{base : "20px" , md : "auto"}} mt={"40px"} gap={"55px"}  flexDirection={"column"} flex={0.7}>
+
+            <Flex filter={data > 1 ? "grayScale(0%)" : "grayScale(100%)"}  gap={"20px"} alignItems={"center"}  justifyContent={"flex-start"} >
+                <FaClipboardCheck  color="#32cd32" size={"40px"}/>
+                <Box  bg={"#4cbb17"} height={"10px"} w={"10px"} borderRadius={"50%"} ></Box>
+                <Text   color={data > 1 ? "#4cbb17" : "gray.500"} fontWeight = {"600"} fontSize = {"20px"}> Order Placed</Text>
 
                 <Flex  alignItems={"center"} marginLeft={"auto"}>
-                <Box display={data == 1 ? "flex" : "none"}> {moment(order.createdAt).format('hh:mm A')} </Box>
+                <Box display={data == 2 ? "flex" : "none"}> {moment(order.createdAt).format('hh:mm A')} </Box>
                 </Flex>
+
+                <Flex  ml={"auto"} borderRadius={"md"}  justifyContent={"flex-end"} padding={"10px"}  >
+            <Text color={"green.500"} fontWeight={600} fontSize={"18px"}> {order._id}  </Text>
+        </Flex> 
 
             </Flex>
 
             <Flex>
-                <Box  my={"-50px"} ml={"63px"} borderRadius={"10px"} bg={data > 1 ? "gray.300" : "gray.700"} height={"100px"} width={"5px"} >  </Box>
+                <Box  my={"-50px"} ml={"63px"} borderRadius={"10px"} bg={data > 1 ? "#4cbb17" : "gray.400"} height={"100px"} width={"5px"} >  </Box>
             </Flex>
 
             
-            <Flex  filter={data > 2 ? "grayScale(100%)" : "grayScale(0%)"}  gap={"20px"}  alignItems={"center"} justifyContent={"start"} >
-                <IoCheckmarkDoneSharp   color='darkorange' size={"40px"}/>
-                <Box   bg={"orange.400"} height={"10px"} w={"10px"} borderRadius={"50%"} ></Box>
-                <Text  color={data > 2 ? "gray.500" : "orange"} fontWeight = {"600"} fontSize = {"18px"}> Order Confirmation</Text>
+            <Flex  filter={data > 2 ? "grayScale(0%)" : "grayScale(100%)"}  gap={"20px"}  alignItems={"center"} justifyContent={"start"} >
+                <IoCheckmarkDoneSharp   color='#32cd32' size={"40px"}/>
+                <Box   bg={"#4cbb17"} height={"10px"} w={"10px"} borderRadius={"50%"} ></Box>
+                <Text  color={data > 2 ? "#4cbb17" : "gray.500"} fontWeight = {"600"} fontSize = {"20px"}> Order Confirmation</Text>
 
                 <Flex  alignItems={"center"} marginLeft={"auto"}>
-                <Box display={data == 2 ? "flex" : "none"}> {moment(order.createdAt).format('hh:mm A')} </Box>
+                <Box display={data == 3 ? "flex" : "none"}> {moment(order.createdAt).format('hh:mm A')} </Box>
                 </Flex>
                
             </Flex>
 
             <Flex>
-                <Box my={"-50px"} ml={"63px"} borderRadius={"10px"} bg={data > 2 ? "gray.300" : "gray.700"} height={"100px"} width={"5px"} >  </Box>
+                <Box my={"-50px"} ml={"63px"} borderRadius={"10px"} bg={data > 2 ? "#4cbb17" : "gray.300"} height={"100px"} width={"5px"} >  </Box>
             </Flex>
 
 
-            <Flex filter={data > 3 ? "grayScale(100%)" : "grayScale(0%)"}  gap={"20px"} alignItems={"center"} justifyContent={"start"} >
-                <FaPizzaSlice  color="darkorange" size={"40px"}/>
-                <Box   bg={"orange.400"} height={"10px"} w={"10px"} borderRadius={"50%"} ></Box>
-                <Text  color={data > 3 ? "gray.500" : "orange"} fontWeight = {"600"} fontSize = {"18px"}> Order Preparation</Text>
-
-                <Flex  alignItems={"center"} marginLeft={"auto"}>
-                <Box display={data == 3 ? "flex" : "none"}> {moment(order.createdAt).format('hh:mm A')} </Box>
-                </Flex>
-
-            </Flex>
-
-            <Flex>
-                <Box my={"-50px"} ml={"63px"} borderRadius={"10px"} bg={data > 3 ? "gray.300" : "gray.700"} height={"100px"} width={"5px"} >  </Box>
-            </Flex>
-
-
-            <Flex  filter={data > 4 ? "grayScale(100%)" : "grayScale(0%)"}  gap={"20px"} alignItems={"center"} justifyContent={"start"} >
-                <FaTruck  color="darkorange" size={"40px"}/>
-                <Box   bg={"orange.400"} height={"10px"} w={"10px"} borderRadius={"50%"} ></Box>
-                <Text  color={data > 4 ? "gray.500" : "orange"} fontWeight = {"600"} fontSize = {"18px"}> Order out of Dilevery</Text>
+            <Flex filter={data > 3 ? "grayScale(0%)" : "grayScale(100%)"}  gap={"20px"} alignItems={"center"} justifyContent={"start"} >
+                <FaPizzaSlice  color="#32cd32" size={"40px"}/>
+                <Box   bg={"#4cbb17"} height={"10px"} w={"10px"} borderRadius={"50%"} ></Box>
+                <Text  color={data > 3 ? "#4cbb17" : "gray.500"} fontWeight = {"600"} fontSize = {"20px"}> Order Preparation</Text>
 
                 <Flex  alignItems={"center"} marginLeft={"auto"}>
                 <Box display={data == 4 ? "flex" : "none"}> {moment(order.createdAt).format('hh:mm A')} </Box>
@@ -127,14 +126,14 @@ if(isLoading){
             </Flex>
 
             <Flex>
-                <Box my={"-50px"} ml={"63px"} borderRadius={"10px"} bg={data > 4 ? "gray.300" : "gray.700"} height={"100px"} width={"5px"} >  </Box>
+                <Box my={"-50px"} ml={"63px"} borderRadius={"10px"} bg={data > 3 ? "#4cbb17" : "gray.300"} height={"100px"} width={"5px"} >  </Box>
             </Flex>
 
 
-            <Flex filter={data > 5 ? "grayScale(100%)" : "grayScale(0%)"}   gap={"20px"} alignItems={"center"} justifyContent={"start"}>
-                <PiSmileyWinkBold  color="darkorange" size={"40px"}/>
-                <Box   bg={"orange.400"} height={"10px"} w={"10px"} borderRadius={"50%"} ></Box>
-                <Text  color={data > 5 ? "gray.500" : "orange"} fontWeight = {"600"} fontSize = {"18px"}> Completed</Text>
+            <Flex  filter={data > 4 ? "grayScale(0%)" : "grayScale(100%)"}  gap={"20px"} alignItems={"center"} justifyContent={"start"} >
+                <FaTruck  color="#32cd32" size={"40px"}/>
+                <Box   bg={"#4cbb17"} height={"10px"} w={"10px"} borderRadius={"50%"} ></Box>
+                <Text  color={data > 4 ? "#4cbb17" : "gray.500"} fontWeight = {"600"} fontSize = {"20px"}> Order out of Dilevery</Text>
 
                 <Flex  alignItems={"center"} marginLeft={"auto"}>
                 <Box display={data == 5 ? "flex" : "none"}> {moment(order.createdAt).format('hh:mm A')} </Box>
@@ -142,10 +141,22 @@ if(isLoading){
 
             </Flex>
 
-        </Flex>
+            <Flex>
+                <Box my={"-50px"} ml={"63px"} borderRadius={"10px"} bg={data > 4 ? "#4cbb17" : "gray.300"} height={"100px"} width={"5px"} >  </Box>
+            </Flex>
 
-        <Flex  padding={"10px"} alignSelf={"flex-start"} >
-            <Text color={"green.500"} fontWeight={500}> {order._id}  </Text>
+
+            <Flex filter={data > 5 ? "grayScale(0%)" : "grayScale(100%)"}   gap={"20px"} alignItems={"center"} justifyContent={"start"}>
+                <PiSmileyWinkBold  color="#32cd32" size={"40px"}/>
+                <Box   bg={"#4cbb17"} height={"10px"} w={"10px"} borderRadius={"50%"} ></Box>
+                <Text  color={data > 5 ? "#4cbb17" : "gray.500"} fontWeight = {"600"} fontSize = {"20px"}> Completed</Text>
+
+                <Flex  alignItems={"center"} marginLeft={"auto"}>
+                <Box display={data == 6 ? "flex" : "none"}> {moment(order.createdAt).format('hh:mm A')} </Box>
+                </Flex>
+
+            </Flex>
+
         </Flex>
 
     </Flex>

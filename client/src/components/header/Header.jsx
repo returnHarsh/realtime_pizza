@@ -64,32 +64,32 @@ function Header() {
 
               <Flex  justifyContent={"center"} alignItems={"flex-end"} >
               <List  width={"60%"} fontSize={{base : "15px" , lg : "17px"}} fontWeight={500}>
-                   <Flex   width={"100%"} flexDirection={"column"}  alignItems={"flex-start"} gap={"20px"}>
+                   <Flex    width={"100%"} flexDirection={"column"}  alignItems={"flex-start"} gap={"20px"}>
 
-                   <Link  to={"/"}> <ListItem   fontSize={"20px"}  _hover={{bg : colors.primary  , color: "white" }} transition={"0.25s ease-in-out"}  borderRadius={"6px"} padding={"7px"} > Home </ListItem> </Link>
+                   <Link  to={"/"}> <ListItem  border={"1px solid"} borderColor={"gray.500"} onClick={toggleDrawer}   fontSize={"15px"}  _hover={{bg : colors.primary  , color: "white" }} transition={"0.25s ease-in-out"}  borderRadius={"6px"} padding={"7px"} > Home </ListItem> </Link>
 
-                   <Link to={"/menu"}> <ListItem  fontSize={"20px"} _hover={{bg : colors.primary  , color: "white" }} transition={"0.25s ease-in-out"}  borderRadius={"6px"} padding={"7px"} > Menu </ListItem> </Link>
+                   <Link to={"/menu"}> <ListItem  onClick={toggleDrawer}  fontSize={"15px"} _hover={{bg : colors.primary  , color: "white" }} transition={"0.25s ease-in-out"}  borderRadius={"6px"} padding={"7px"} > Menu </ListItem> </Link>
 
                    {!user && <>
-                    <Link to={"/login"}> <ListItem  fontSize={"20px"} _hover={{bg : colors.primary  , color: "white" }} transition={"0.25s ease-in-out"}  borderRadius={"6px"} padding={"7px"} > Login </ListItem> </Link>
+                    <Link to={"/login"}> <ListItem onClick={toggleDrawer}  fontSize={"15px"} _hover={{bg : colors.primary  , color: "white" }} transition={"0.25s ease-in-out"}  borderRadius={"6px"} padding={"7px"} > Login </ListItem> </Link>
 
-                   <Link to={"/register"}> <ListItem fontSize={"20px"}   _hover={{bg : colors.primary  , color: "white" }} transition={"0.25s ease-in-out"}  borderRadius={"6px"} padding={"7px"} > Register </ListItem> </Link>
+                   <Link to={"/register"}> <ListItem onClick={toggleDrawer} fontSize={"15px"}   _hover={{bg : colors.primary  , color: "white" }} transition={"0.25s ease-in-out"}  borderRadius={"6px"} padding={"7px"} > Register </ListItem> </Link>
                    </>}
 
-                   {/* {user && user?.role == "admin" && <>
+                   {user && user?.role == "admin" && <>
                    <Link to={"/"}> <ListItem fontSize={{base : "10px" , lg : "15px"}}  transition={"0.25s ease-in-out"}  borderRadius={"6px"} padding={"7px"}  > <AddMenu/> </ListItem> </Link>
-                   <Link to={"/admin/all/orders"}> <ListItem  _hover={{bg : colors.primary , color : "white"}} transition={"0.25s ease-in-out"}  borderRadius={"6px"} padding={"7px"} > All Orders </ListItem> </Link>
-                   </>} */}
-
-                   {user && <>
-                    <Link to={"/past/orders"}> <ListItem  fontSize={"20px"}  _hover={{bg : colors.primary , color : "white" }} transition={"0.25s ease-in-out"}  borderRadius={"6px"} padding={"7px"} > past Orders </ListItem> </Link>
+                   <Link to={"/admin/all/orders"}> <ListItem onClick={toggleDrawer}  _hover={{bg : colors.primary , color : "white"}} transition={"0.25s ease-in-out"}  borderRadius={"6px"} padding={"7px"} > All Orders </ListItem> </Link>
                    </>}
 
                    {user && <>
-                    <Link onClick={logoutHandler} > <ListItem  fontSize={"20px"} _hover={{bg : colors.primary  , color: "white" }} transition={"0.25s ease-in-out"}  borderRadius={"6px"} padding={"7px"} > Logout </ListItem> </Link>
+                    <Link to={"/past/orders"}> <ListItem onClick={toggleDrawer}  fontSize={"15px"}  _hover={{bg : colors.primary , color : "white" }} transition={"0.25s ease-in-out"}  borderRadius={"6px"} padding={"7px"} > past Orders </ListItem> </Link>
                    </>}
 
-                   <Link to={"/cart"}>  <ListItem  _hover={{bg : colors.primary  , color: "white" }} transition={"0.25s ease-in-out"}  borderRadius={"6px"} padding={"7px"} > <CiShoppingCart size={"30px"} /> </ListItem> </Link>
+                   {user && <>
+                    <Link onClick={logoutHandler} > <ListItem onClick={toggleDrawer}  fontSize={"15px"} _hover={{bg : colors.primary  , color: "white" }} transition={"0.25s ease-in-out"}  borderRadius={"6px"} padding={"7px"} > Logout </ListItem> </Link>
+                   </>}
+
+                   <Link to={"/cart"}>  <ListItem  onClick={toggleDrawer} _hover={{bg : colors.primary  , color: "white" }} transition={"0.25s ease-in-out"}  borderRadius={"6px"} padding={"7px"} > <CiShoppingCart size={"30px"} /> </ListItem> </Link>
                    </Flex>
                 </List>
               </Flex>
